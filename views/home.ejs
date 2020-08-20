@@ -200,6 +200,8 @@
       </div>
       </div>
 		<form action="/" method="POST" id="theForm" class = "text-center">
+		<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+		<input type="hidden" name="action" value="validate_captcha">	
 		<% for (var i = 0; i < pictures.length; i ++) { %>
             <div class="mySlides fade1" >
                 <div class="card  <% if (i == 0) { %> bg-success <% }else {%> bg-dark <% } %> img my-5 py-3 myCard text-white" >
@@ -410,7 +412,7 @@
 			</div>
 
               <div class="text-center">
-					<input type="submit" class="btn btn-warning btn-block my-4" value="ارسال نتایج">
+					<input id="sub" disabled="true" type="submit" class="btn btn-warning btn-block my-4" value="ارسال نتایج">
               </div>
             </div>
     <input type="hidden" name="timeStamps" value="{}" id="timeStamps" />
@@ -532,5 +534,24 @@
 	}
 
 </script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-"></script>
+<script>
+    grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-', {action:'validate_captcha'})
+                  .then(function(token) {
+                    // add token value to form
+                    document.getElementById('g-recaptcha-response').value = token;
+                    console.log("GOT it")
+                    document.getElementById("sub").disabled = false;
+                  })
+                  .catch(err => {
+                    console.log(err)
+                  });
+    });
+</script>
+
 </body>
 </html>

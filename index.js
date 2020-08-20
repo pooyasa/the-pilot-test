@@ -3,10 +3,10 @@ const express = require("express")
 const debug = require("debug")("app:main");
 const bodyParser = require("body-parser")
 const mongooseLink = require('./modules/mongooseLink');
-const favicon = require("serve-favicon")
-const path = require('path')
-
+const axios = require("axios")
 const config = require("./config")
+
+
 
 mongooseLink.begin()
 const app = express()
@@ -16,7 +16,7 @@ app.set("views" , './views');
 app.use(express.static('static'))
 
 app.use("/" , express.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/" , async (req , res) => {
     let leastShowedPictures = await mongooseLink.getLeastShowedPictures(config.numberOfPicturesToBeShown);
@@ -36,10 +36,21 @@ app.get("/" , async (req , res) => {
 });
 
 app.post("/" , (req , res) => {
-    console.log(req.body)
+    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+    {
+      return res.render("error" , {title : "خطای نامشخص"})
+    }
+    const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + config.captcha.secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    axios.create().get(verificationURL)
+    .then(response => {
+      body = response.data;
+      if(body.success !== undefined && !body.success) {
+        return res.render("error" , {title : "خطای نامشخص"})
+      }
+      
     try {
         if (!validatePost(req.body))
-            return res.status(400).send("Bad Request.");
+            return res.render("error" , {title : "خطای نامشخص"})
         let timeStamps = JSON.parse(req.body.timeStamps);
         let model = {}
         model.gender = req.body.gender;
@@ -56,6 +67,9 @@ app.post("/" , (req , res) => {
         delete req.body.education;
         delete req.body.disorder;
         delete req.body.medCond;
+
+        delete req.body['g-recaptcha-response']
+        delete req.body.action
 
         let happiness = {};
         let provoked = {};
@@ -82,9 +96,15 @@ app.post("/" , (req , res) => {
         mongooseLink.addReport(model)
         res.render("end" , {title : "ارزیابی تصاویر"})
     } catch (err) {
-        console.error(err)
-        res.send("Unknown Error")
+        console.error(err.message)
+        return res.render("error" , {title : "خطای نامشخص"})
     }
+    })
+    .catch(err => {
+      console.log(err.message)
+      return res.render("error" , {title : "خطای نامشخص"})
+    })
+
 });
 
 app.get("/getResults" , async  (req , res) => {
