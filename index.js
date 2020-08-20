@@ -1,12 +1,12 @@
 process.env.DEBUG = ["app:db" , "app:main"]
 const express = require("express")
-const debug = require("debug")("app:main");
 const bodyParser = require("body-parser")
 const mongooseLink = require('./modules/mongooseLink');
 const axios = require("axios")
 const config = require("./config")
+var favicon = require('serve-favicon')
+var path = require('path')
 
-let checkCap = false;
 
 mongooseLink.begin()
 const app = express()
@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.set("views" , './views');
 
 app.use(express.static('static'))
+app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')))
 
 app.use("/" , express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
