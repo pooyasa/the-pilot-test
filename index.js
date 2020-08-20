@@ -6,7 +6,7 @@ const mongooseLink = require('./modules/mongooseLink');
 const axios = require("axios")
 const config = require("./config")
 
-
+let checkCap = false;
 
 mongooseLink.begin()
 const app = express()
@@ -32,79 +32,80 @@ app.get("/" , async (req , res) => {
         pictureNumbers.push(leastShowedPictures[randomArray[i]].id)
         mongooseLink.incPictures(pictureNumbers[i])
     }
-    res.render("home" , {title : "ارزیابی تصاویر" , pictures : pictureNumbers})
+    res.render("home" , {title : "ارزیابی تصاویر" , pictures : pictureNumbers, capId: config.captcha.siteKey})
 });
 
 app.post("/" , (req , res) => {
+    /*
     if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
     {
-      return res.render("error" , {title : "خطای نامشخص"})
+        return res.render("error" , {title : "خطای نامشخص"})
     }
     const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + config.captcha.secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
     axios.create().get(verificationURL)
     .then(response => {
-      body = response.data;
-      if(body.success !== undefined && !body.success) {
-        return res.render("error" , {title : "خطای نامشخص"})
-      }
-      
-    try {
-        if (!validatePost(req.body))
+        body = response.data;
+        if(body.success !== undefined && !body.success) {
             return res.render("error" , {title : "خطای نامشخص"})
-        let timeStamps = JSON.parse(req.body.timeStamps);
-        let model = {}
-        model.gender = req.body.gender;
-        model.age = req.body.age;
-
-        model.education = req.body.education;
-        model.disorder = req.body.disorder;
-        model.medCond = req.body.medCond;
-
-        delete req.body.gender;
-        delete req.body.age;
-        delete req.body.timeStamps;
-
-        delete req.body.education;
-        delete req.body.disorder;
-        delete req.body.medCond;
-
-        delete req.body['g-recaptcha-response']
-        delete req.body.action
-
-        let happiness = {};
-        let provoked = {};
-        for(i in req.body){
-            let modH = i.replace('h' , '');
-            let modP = i.replace('p' , '');
-            if (i != modH){
-                happiness[modH] = req.body[i]
-            } else if (i != modP){
-                provoked[modP] = req.body[i]
+        }
+        */
+        try {
+            if (!validatePost(req.body))
+            return res.render("error" , {title : "خطای نامشخص"})
+            let timeStamps = JSON.parse(req.body.timeStamps);
+            let model = {}
+            model.gender = req.body.gender;
+            model.age = req.body.age;
+            
+            model.education = req.body.education;
+            model.disorder = req.body.disorder;
+            model.medCond = req.body.medCond;
+            
+            delete req.body.gender;
+            delete req.body.age;
+            delete req.body.timeStamps;
+            
+            delete req.body.education;
+            delete req.body.disorder;
+            delete req.body.medCond;
+            
+            delete req.body['g-recaptcha-response']
+            delete req.body.action
+            
+            let happiness = {};
+            let provoked = {};
+            for(i in req.body){
+                let modH = i.replace('h' , '');
+                let modP = i.replace('p' , '');
+                if (i != modH){
+                    happiness[modH] = req.body[i]
+                } else if (i != modP){
+                    provoked[modP] = req.body[i]
+                }
             }
-        }
-        model.result = {} ;
-        
-        for (i in happiness)
-        {
-            model.result[i] = {};
-            model.result[i].time = timeStamps[i];
-            model.result[i].valence = happiness[i];
-            model.result[i].arousal = provoked[i];
-        }
-        delete model.result[timeStamps.testRound];
-        debug(model)
-        mongooseLink.addReport(model)
-        res.render("end" , {title : "ارزیابی تصاویر"})
-    } catch (err) {
-        console.error(err.message)
-        return res.render("error" , {title : "خطای نامشخص"})
-    }
+            model.result = {} ;
+            
+            for (i in happiness)
+            {
+                model.result[i] = {};
+                model.result[i].time = timeStamps[i];
+                model.result[i].valence = happiness[i];
+                model.result[i].arousal = provoked[i];
+            }
+            delete model.result[timeStamps.testRound];
+            debug(model)
+            mongooseLink.addReport(model)
+            res.render("end" , {title : "ارزیابی تصاویر"})
+        } catch (err) {
+            console.error(err.message)
+            return res.render("error" , {title : "خطای نامشخص"})
+        }/*
     })
     .catch(err => {
-      console.log(err.message)
-      return res.render("error" , {title : "خطای نامشخص"})
+        console.log(err.message)
+        return res.render("error" , {title : "خطای نامشخص"})
     })
-
+    */
 });
 
 app.get("/getResults" , async  (req , res) => {
@@ -123,11 +124,11 @@ function validatePost(req) {
     if (!req.gender) return false;
     if (!req.age) return false;
     if (!req.timeStamps) return false;
-
+    
     if (!req.education) return false;
     if (!req.disorder) return false;
     if (!req.medCond) return false;
-
+    
     if(!req.timeStamps.split(",").length) return false;
     if(req.timeStamps.split(",").length < 2) return false;
     return true;

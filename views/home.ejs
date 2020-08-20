@@ -132,12 +132,11 @@
 	}
     #hiddenDiv {
   		display: none;
-
 	}
 	body {
-    font-family: Yekan, cursive;
-    font-size: 17px;
-  }
+		font-family: Yekan, cursive;
+		font-size: 17px;
+  	}
   	p{
 		font-family: Yekan, cursive;
 		font-size: 18px;
@@ -149,9 +148,9 @@
 	}
     .myCard {
 			width : 90vw !important;
-			height : 65vh !important;
+			min-height : 80vh !important;
     }	
-	 img {
+	img {
 		object-fit: contain;
 		max-width: 90vw;
 		max-height: 60vh;
@@ -174,12 +173,6 @@
 	.checkboxgroup label {
 		display: block;
 	}
-	/*.hiddenPooya {
-		display: none;
-	}
-	.shownPooya {
-		display: block;
-	}*/
   </style>
 </head>
 <body > 
@@ -204,114 +197,115 @@
 		<input type="hidden" name="action" value="validate_captcha">	
 		<% for (var i = 0; i < pictures.length; i ++) { %>
             <div class="mySlides fade1" >
-                <div class="card  <% if (i == 0) { %> bg-success <% }else {%> bg-dark <% } %> img my-5 py-3 myCard text-white" >
-				<% if (i == 0) { %> <h3> دور تست</h3> <% }%>
+				<div class="card  <% if (i == 0) { %> bg-info <% }else {%> bg-dark <% } %> img my-4 py-3 myCard text-white" >
+				<% if (i == 0) { %> <h4> دور تست</h4> <% }%>
 				<img class="card-img-top" src="/PicStim<%= pictures[i] %>.jpg" alt="Card image" >
                 <div class="card-body text-center">
-					<div style="position : absolute ; bottom : 0px; margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center; line-height:1.15em;">
+					<div style="position : absolute ; bottom : 0px; margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center; line-height:1rem;">
 					<div class = "shownPooya">
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice1"
-							name="h<%= pictures[i] %>" value="-4" onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="-4" >
 							<label for="1-<%= pictures[i] %>contactChoice1">-4</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice2"
-							name="h<%= pictures[i] %>" value="-3" onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="-3" >
 							<label for="1-<%= pictures[i] %>contactChoice2">-3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">					
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice3"
-							name="h<%= pictures[i] %>" value="-2" onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="-2" >
 							<label for="1-<%= pictures[i] %>contactChoice3">-2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">				
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice4"
-							name="h<%= pictures[i] %>" value="-1" onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="-1" >
 							<label for="1-<%= pictures[i] %>contactChoice4">-1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">				
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice5"
-							name="h<%= pictures[i] %>" value="0" onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="0" >
 							<label for="1-<%= pictures[i] %>contactChoice5">0</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice6"
-							name="h<%= pictures[i] %>" value="1"  onclick="getHappinessTime(<%= pictures[i] %>)"> 
+							name="h<%= pictures[i] %>" value="1"  > 
 							<label for="1-<%= pictures[i] %>contactChoice6">1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice7"
-							name="h<%= pictures[i] %>" value="2"  onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="2"  >
 							<label for="1-<%= pictures[i] %>contactChoice7">2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice8"
-							name="h<%= pictures[i] %>" value="3"  onclick="getHappinessTime(<%= pictures[i] %>)"> 
+							name="h<%= pictures[i] %>" value="3"  > 
 							<label for="1-<%= pictures[i] %>contactChoice8">3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice9"
-							name="h<%= pictures[i] %>" value="4"  onclick="getHappinessTime(<%= pictures[i] %>)">
+							name="h<%= pictures[i] %>" value="4"  >
 							<label for="1-<%= pictures[i] %>contactChoice9">4</label>
 						</div>
 						<br>
 						<br>
-						<span class= "bg-warning mt-2 rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان خوشایندی</span>
+						<span class= " mt-2 rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان خوشایندی</span>
 						<br>
                     </div>
                     <div class = "hiddenPooya" style = "display : none">
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice1"
-							name="p<%= pictures[i] %>" value="-4" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="-4" >
 							<label for="2-<%= pictures[i] %>contactChoice1">-4</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice2"
-							name="p<%= pictures[i] %>" value="-3" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="-3" >
 							<label for="2-<%= pictures[i] %>contactChoice2">-3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">					
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice3"
-							name="p<%= pictures[i] %>" value="-2" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="-2" >
 							<label for="2-<%= pictures[i] %>contactChoice3">-2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">				
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice4"
-							name="p<%= pictures[i] %>" value="-1" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="-1" >
 							<label for="2-<%= pictures[i] %>contactChoice4">-1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">				
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice5"
-							name="p<%= pictures[i] %>" value="0" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="0" >
 							<label for="2-<%= pictures[i] %>contactChoice5">0</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice6"
-							name="p<%= pictures[i] %>" value="1" onclick="getArousalTime(<%= pictures[i] %>)"> 
+							name="p<%= pictures[i] %>" value="1" > 
 							<label for="2-<%= pictures[i] %>contactChoice6">1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice7"
-							name="p<%= pictures[i] %>" value="2" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="2" >
 							<label for="2-<%= pictures[i] %>contactChoice7">2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice8"
-							name="p<%= pictures[i] %>" value="3" onclick="getArousalTime(<%= pictures[i] %>)"> 
+							name="p<%= pictures[i] %>" value="3" > 
 							<label for="2-<%= pictures[i] %>contactChoice8">3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-3">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice9"
-							name="p<%= pictures[i] %>" value="4" onclick="getArousalTime(<%= pictures[i] %>)">
+							name="p<%= pictures[i] %>" value="4" >
 							<label for="2-<%= pictures[i] %>contactChoice9">4</label>
 						</div>		
 						<br>
 						<br>
-						<span class= "bg-success rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان انگیختگی</span>
+						<span class= "rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان انگیختگی</span>
 					</div>
 						<br>
-                        <button onclick="plusSlides(1)"  type="button" class="btn btn-primary btn-block "> بعدی </button>
+						<button id="sub-<%= pictures[i] %>"  onclick="getHappinessTime(<%= pictures[i] %>)"  type="button" class="btn btn-primary btn-block " style="display: block"> بعدی </button>
+                        <button id="next-<%= pictures[i] %>" onclick="plusSlides(1, <%= pictures[i] %>)"     type="button" class="btn btn-primary btn-block " style="display: none;"> بعدی </button>
                      </div>
                     <br>
                 </div>
@@ -412,7 +406,7 @@
 			</div>
 
               <div class="text-center">
-					<input id="sub" disabled="true" type="submit" class="btn btn-warning btn-block my-4" value="ارسال نتایج">
+					<input id="sub" type="submit" class="btn btn-warning btn-block my-4" value="ارسال نتایج">
               </div>
             </div>
     <input type="hidden" name="timeStamps" value="{}" id="timeStamps" />
@@ -422,11 +416,6 @@
     </div>
     <br>
     <p id="pictureCounter" style="display:none"><%= pictures %></p>
-    <div style="text-align:center">
-      <span class="dot invis" onclick="currentSlide(1)"></span> 
-      <span class="dot invis" onclick="currentSlide(2)"></span> 
-      <span class="dot invis" onclick="currentSlide(3)"></span> 
-    </div>  
 </div>
 </div>
 
@@ -436,7 +425,7 @@
 	let lastTime = Date.now();
 	let picturesId = document.getElementById("pictureCounter").innerHTML.split(',');
 	let currentPictureId;
-	function plusSlides(n) {
+	function plusSlides(n, picId) {
 		if (slideIndex > 1){
 			let isCheckedHappiness = false;
 			let isCheckedProvoked = false;
@@ -459,6 +448,7 @@
 		   if (isCheckedHappiness && isCheckedProvoked) {
 				const shownOptions = document.getElementsByClassName("shownPooya");
 				const hiddenOptions = document.getElementsByClassName("hiddenPooya");
+				getArousalTime(picId);
 				for (i = 0; i < shownOptions.length; i++) {
 					shownOptions[i].style.display = "block";
 				}
@@ -476,16 +466,12 @@
 				setTimeout(() => showSlides(slideIndex += n) , 0);
 				lastTime = Date.now();
 			} else  {
-				console.log ("Happines: " + isCheckedHappiness  + " Provoked: " + isCheckedProvoked);
+				//console.log ("Happines: " + isCheckedHappiness  + " Provoked: " + isCheckedProvoked);
 			}
 		} else {
 			setTimeout(() => showSlides(slideIndex += n) , 0);
 			lastTime = Date.now();
 		}
-	}
-
-	function currentSlide(n) {
-		showSlides(slideIndex = n);
 	}
 
 	function showSlides(n) {
@@ -504,24 +490,48 @@
 		//dots[slideIndex-1].className += " active";
 	}
 	function getHappinessTime(picId){
-		const shownOptions = document.getElementsByClassName("shownPooya");
-		const hiddenOptions = document.getElementsByClassName("hiddenPooya");
-		for (i = 0; i < shownOptions.length; i++) {
-			shownOptions[i].style.display = "none";
+		if (slideIndex > 1){
+			let isCheckedHappiness = false;
+			let currentPicture = slideIndex - 2;
+			currentPictureId = picturesId[currentPicture];
+			let radios1 = document.getElementsByName('h' + parseInt(currentPictureId));
+
+			for (i in radios1){
+				if (radios1[i].checked){
+					isCheckedHappiness = true;
+					break;
+				}
+			}
+
+		   	if (isCheckedHappiness) {
+				const shownOptions = document.getElementsByClassName("shownPooya");
+				const hiddenOptions = document.getElementsByClassName("hiddenPooya");
+				document.getElementById(`sub-${picId}`).style.display = "none";
+				document.getElementById(`next-${picId}`).style.display = "block";
+				document.getElementById(`next-${picId}`).style.marginTop= "0";
+
+				for (i = 0; i < shownOptions.length; i++) {
+					shownOptions[i].style.display = "none";
+				}
+				
+				for (i = 0; i < hiddenOptions.length; i++) {
+					hiddenOptions[i].style.display = "block";
+				}
+			
+				let element = document.getElementById("timeStamps");
+				let times = JSON.parse(element.value);
+				let time = Date.now() - lastTime;
+				console.log("Setting Happiness time for the " + picId  + ": " + time)
+				times[picId] = {};
+				times[picId].valenceTime = time;
+				element.value = JSON.stringify(times);	
+				lastTime = Date.now();
+			} else {
+				console.log("IS NOT CHECKED")
+			}
+
 		}
-		
-		for (i = 0; i < hiddenOptions.length; i++) {
-			hiddenOptions[i].style.display = "block";
-		}
-		
-		let element = document.getElementById("timeStamps");
-		let times = JSON.parse(element.value);
-		let time = Date.now() - lastTime;
-		console.log("Setting Happiness time for the " + picId  + ": " + time)
-		times[picId] = {};
-		times[picId].valenceTime = time;
-		element.value = JSON.stringify(times);	
-		lastTime = Date.now();
+
 	}
 	function getArousalTime(picId){
 		let element = document.getElementById("timeStamps");
@@ -535,21 +545,19 @@
 
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js?render=6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<%= capId %>"></script>
+
 <script>
     grecaptcha.ready(function() {
-    // do request for recaptcha token
-    // response is promise with passed token
         grecaptcha.execute('6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-', {action:'validate_captcha'})
-                  .then(function(token) {
-                    // add token value to form
-                    document.getElementById('g-recaptcha-response').value = token;
-                    console.log("GOT it")
-                    document.getElementById("sub").disabled = false;
-                  })
-                  .catch(err => {
-                    console.log(err)
-                  });
+			.then(function(token) {
+				document.getElementById('g-recaptcha-response').value = token;
+				console.log("GOT it")
+				document.getElementById("sub").disabled = false;
+			})
+			.catch(err => {
+				console.log(err)
+			});
     });
 </script>
 
