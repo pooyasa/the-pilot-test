@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lateef&family=Scheherazade&display=swap" rel="stylesheet">
+  <link href='https://cdn.fontcdn.ir/Font/Persian/Yekan/Yekan.css' rel='stylesheet' type='text/css'>
+
+  <style>
+    * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0 ;
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10+ and Edge */
+	user-select: none; /* Standard syntax */
+	}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
+    
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+    
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      display: none;
+    }
+    
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+    
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: none;
+      transition: background-color 0.6s ease;
+    }
+    
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+    
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev, .next,.text {font-size: 11px}
+    }
+	
+/* Fading animation */
+.fade1 {
+  -webkit-animation-name: fade1;
+  -webkit-animation-duration: 0.25s;
+  animation-name: fade1;
+  animation-duration: 0.25s;
+}
+
+@-webkit-keyframes fade1 {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade1 {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+    </style>
+  <style type="text/css">
+    html {
+        scroll-behavior: smooth;
+    }
+  	.img {
+  		display: block;
+  		margin-left: auto;
+  		margin-right: auto;
+  		width: 40%;
+	}
+    #hiddenDiv {
+  		display: none;
+
+	}
+	body {
+    font-family: Yekan, cursive;
+    font-size: 17px;
+  }
+  	p{
+		font-family: Yekan, cursive;
+		font-size: 18px;
+	}
+	h2{
+		font-family: 'Yekan', cursive;
+		font-weight: bold;
+		font-size: 22px;
+	}
+    .myCard {
+			width : 90vw !important;
+			height : 65vh !important;
+    }	
+	 img {
+		object-fit: contain;
+		max-width: 90vw;
+		max-height: 60vh;
+	}
+	@media (min-width: 1100px) {
+		.myCard {
+			width : 55vw !important;
+			height : 90vh !important;
+		}
+		img {
+			object-fit: contain;
+			max-width: 55vw;
+			max-height: 60vh;
+		}
+	}
+	.checkboxgroup {
+		display: inline-block;
+		text-align: center;
+	}
+	.checkboxgroup label {
+		display: block;
+	}
+	/*.hiddenPooya {
+		display: none;
+	}
+	.shownPooya {
+		display: block;
+	}*/
+  </style>
+</head>
+<body > 
+ 
+<div class="container mt-4 p-4">
+  <h2 dir="rtl" align="right">آزمون ارزیابی تصاویر</h2>
+  <div class="slideshow-container">
+      <div class="mySlides fade1" >
+			<p dir="rtl" align="right">با درود، به این آزمون خوش آمدید، لطفا در فاصله‌ی شصت سانتی متری صفحه نمایشگر بنشینید و در صورت امکان منبع نور مستقیمی از بالای سر شما روشن نباشد.</p>
+			<p dir="rtl" align="right">هدف از این آزمون بررسی چگونگی پاسخ‌دهی افراد به صحنه‌های دیداری مختلف می‌باشد.</p>
+			<p dir="rtl" align="right">در این آزمون پنجاه تصویر مختلف ارائه می‌شود. <strong> فقط </strong>با توجه به واکنش و احساس درونی خود، مشخص کنید هر تصویر تا چه میزان برای شما احساس خوشایند یا ناخوشایند و تا چه میزان در شما احساس برانگیختگی ایجاد میکند.</p>
+			<p dir="rtl" align="right"> تصویر اول برای نمونه و یادگیری شما می‌باشد؛ لطفا به نحوه‌ی پاسخ‌دهی به این نمونه‌ دقت کنید.</p>
+			<p dir="rtl" align="right">ناخوشایند ترین: -4 و خوشایند ترین +4</p>
+			<p dir="rtl" align="right">کمترین انگیختگی: -4 و بیشترین انگیختگی +4</p>
+	  		<p dir="rtl" align="right">بعضی از تصاویر ممکن است برای شما ناراحت کننده باشد، با زدن گزینه تایید، آگاهی خود را از این موضوع اعلام کنید.</p>
+      <div class="text-center">
+        <button onclick="plusSlides(1)" class="btn btn-success btn-block my-4"> تایید و شروع آزمون </button>
+      </div>
+      </div>
+		<form action="/" method="POST" id="theForm" class = "text-center">
+		<% for (var i = 0; i < pictures.length; i ++) { %>
+            <div class="mySlides fade1" >
+                <div class="card  <% if (i == 0) { %> bg-success <% }else {%> bg-dark <% } %> img my-5 py-3 myCard text-white" >
+				<% if (i == 0) { %> <h3> دور تست</h3> <% }%>
+				<img class="card-img-top" src="/PicStim<%= pictures[i] %>.jpg" alt="Card image" >
+                <div class="card-body text-center">
+					<div style="position : absolute ; bottom : 0px; margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center; line-height:1.15em;">
+					<div class = "shownPooya">
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice1"
+							name="h<%= pictures[i] %>" value="-4" onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice1">-4</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice2"
+							name="h<%= pictures[i] %>" value="-3" onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice2">-3</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">					
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice3"
+							name="h<%= pictures[i] %>" value="-2" onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice3">-2</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">				
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice4"
+							name="h<%= pictures[i] %>" value="-1" onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice4">-1</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">				
+							<input type="radio" id="1-<%= pictures[i] %>contactChoice5"
+							name="h<%= pictures[i] %>" value="0" onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice5">0</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice6"
+							name="h<%= pictures[i] %>" value="1"  onclick="getHappinessTime(<%= pictures[i] %>)"> 
+							<label for="1-<%= pictures[i] %>contactChoice6">1</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio" id="1-<%= pictures[i] %>contactChoice7"
+							name="h<%= pictures[i] %>" value="2"  onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice7">2</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio" id="1-<%= pictures[i] %>contactChoice8"
+							name="h<%= pictures[i] %>" value="3"  onclick="getHappinessTime(<%= pictures[i] %>)"> 
+							<label for="1-<%= pictures[i] %>contactChoice8">3</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="1-<%= pictures[i] %>contactChoice9"
+							name="h<%= pictures[i] %>" value="4"  onclick="getHappinessTime(<%= pictures[i] %>)">
+							<label for="1-<%= pictures[i] %>contactChoice9">4</label>
+						</div>
+						<br>
+						<br>
+						<span class= "bg-warning mt-2 rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان خوشایندی</span>
+						<br>
+                    </div>
+                    <div class = "hiddenPooya" style = "display : none">
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice1"
+							name="p<%= pictures[i] %>" value="-4" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice1">-4</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice2"
+							name="p<%= pictures[i] %>" value="-3" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice2">-3</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">					
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice3"
+							name="p<%= pictures[i] %>" value="-2" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice3">-2</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">				
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice4"
+							name="p<%= pictures[i] %>" value="-1" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice4">-1</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">				
+							<input type="radio" id="2-<%= pictures[i] %>contactChoice5"
+							name="p<%= pictures[i] %>" value="0" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice5">0</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice6"
+							name="p<%= pictures[i] %>" value="1" onclick="getArousalTime(<%= pictures[i] %>)"> 
+							<label for="2-<%= pictures[i] %>contactChoice6">1</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio" id="2-<%= pictures[i] %>contactChoice7"
+							name="p<%= pictures[i] %>" value="2" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice7">2</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio" id="2-<%= pictures[i] %>contactChoice8"
+							name="p<%= pictures[i] %>" value="3" onclick="getArousalTime(<%= pictures[i] %>)"> 
+							<label for="2-<%= pictures[i] %>contactChoice8">3</label>
+						</div>
+						<div class="checkboxgroup ml-md-4 ml-3">
+							<input type="radio"  id="2-<%= pictures[i] %>contactChoice9"
+							name="p<%= pictures[i] %>" value="4" onclick="getArousalTime(<%= pictures[i] %>)">
+							<label for="2-<%= pictures[i] %>contactChoice9">4</label>
+						</div>		
+						<br>
+						<br>
+						<span class= "bg-success rounded p-1 px-4 mt-2" dir="rtl" align="right">میزان انگیختگی</span>
+					</div>
+						<br>
+                        <button onclick="plusSlides(1)"  type="button" class="btn btn-primary btn-block "> بعدی </button>
+                     </div>
+                    <br>
+                </div>
+                </div>
+            </div>
+            <% } %>
+            <div class="mySlides fade1">
+              <div  style="text-align: center; direction:rtl;">
+                <p dir="rtl" align="right">لطفا اطلاعات خواسته شده را وارد کنید</p>
+                <label for="gender" dir="rtl" align="right">جنسیت:&nbsp;</label>
+                <select id="gender" name="gender" required>
+                  <option value="" selected disabled hidden>انتخاب کنید</option>
+                  <option value="male" >مرد</option>
+                  <option value="female">زن</option>
+                  <option value="null">سایر</option>
+                </select>
+                <br>
+                <label for="age" dir="rtl" align="right">سن:&nbsp;</label>
+                <select id="age" name="age" required>
+                  <option value="" selected disabled hidden>انتخاب کنید</option>
+                  <option value="15">15 و کمتر</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60 و بیشتر</option>
+                </select>
+				<br>
+				<label for="education" dir="rtl" align="right">میزان تحصیلات:&nbsp;</label>
+				<select id="education" name="education" required>
+				  <option value="" selected disabled hidden>انتخاب کنید</option>
+				  <option value="0" >زیر دیپلم</option>
+				  <option value="1">دیپلم</option>
+				  <option value="2">کارشناسی</option>
+				  <option value="3" >کارشناسی ارشد</option>
+				  <option value="4">دکترا</option>
+				  <option value="5">بالاتر</option>
+				</select>
+
+				<br>
+				<label for="disorder" dir="rtl" align="right">سابقه‌ی بیماری عصبی یا روانی:&nbsp;</label>
+				<select id="disorder" name="disorder" required>
+				  <option value="" selected disabled hidden>انتخاب کنید</option>
+				  <option value="1" >بله</option>
+				  <option value="0">خیر</option>
+				  <option value="-1">مایل به گفتن نیستم</option>
+				</select>
+
+				<br>
+				<label for="medCond" dir="rtl" align="right">آیا در حال حاضر تحت درمان دارویی هستید؟&nbsp;</label>
+				<select id="medCond" name="medCond" required>
+				  <option value="" selected disabled hidden>انتخاب کنید</option>
+				  <option value="1" >بله</option>
+				  <option value="0">خیر</option>
+				  <option value="-1">مایل به گفتن نیستم</option>
+				</select>
+
+			</div>
+
+              <div class="text-center">
+					<input type="submit" class="btn btn-warning btn-block my-4" value="ارسال نتایج">
+              </div>
+            </div>
+    <input type="hidden" name="timeStamps" value="{}" id="timeStamps" />
+    </form> 
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <p id="pictureCounter" style="display:none"><%= pictures %></p>
+    <div style="text-align:center">
+      <span class="dot invis" onclick="currentSlide(1)"></span> 
+      <span class="dot invis" onclick="currentSlide(2)"></span> 
+      <span class="dot invis" onclick="currentSlide(3)"></span> 
+    </div>  
+</div>
+</div>
+
+<script>
+	var slideIndex = 1;
+	showSlides(slideIndex);
+	let lastTime = Date.now();
+	let picturesId = document.getElementById("pictureCounter").innerHTML.split(',');
+	let currentPictureId;
+	function plusSlides(n) {
+		if (slideIndex > 1){
+			let isCheckedHappiness = false;
+			let isCheckedProvoked = false;
+			let currentPicture = slideIndex - 2;
+			currentPictureId = picturesId[currentPicture];
+			let radios1 = document.getElementsByName('h' + parseInt(currentPictureId));
+			let radios2 = document.getElementsByName('p' + parseInt(currentPictureId));
+			for (i in radios1){
+				if (radios1[i].checked){
+					isCheckedHappiness = true;
+					break;
+				}
+			}
+			for (i in radios2){
+				if (radios2[i].checked){
+					isCheckedProvoked = true;
+					break;
+				}
+			}
+		   if (isCheckedHappiness && isCheckedProvoked) {
+				const shownOptions = document.getElementsByClassName("shownPooya");
+				const hiddenOptions = document.getElementsByClassName("hiddenPooya");
+				for (i = 0; i < shownOptions.length; i++) {
+					shownOptions[i].style.display = "block";
+				}
+				
+				for (i = 0; i < hiddenOptions.length; i++) {
+					hiddenOptions[i].style.display = "none";
+				}
+				if (currentPicture == 0){
+					console.log("Test Round: ID = " + currentPictureId)
+					let element = document.getElementById("timeStamps");
+					let times = JSON.parse(element.value);
+					times.testRound = currentPictureId;
+					element.value = JSON.stringify(times)
+				}
+				setTimeout(() => showSlides(slideIndex += n) , 0);
+				lastTime = Date.now();
+			} else  {
+				console.log ("Happines: " + isCheckedHappiness  + " Provoked: " + isCheckedProvoked);
+			}
+		} else {
+			setTimeout(() => showSlides(slideIndex += n) , 0);
+			lastTime = Date.now();
+		}
+	}
+
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("dot");
+		if (n > slides.length) {slideIndex = 1}    
+		if (n < 1) {slideIndex = slides.length}
+		for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+		}
+		for (i = 0; i < dots.length; i++) {
+				//dots[i].className = dots[i].className.replace(" active", "");
+		}
+		slides[slideIndex-1].style.display = "block";
+		//dots[slideIndex-1].className += " active";
+	}
+	function getHappinessTime(picId){
+		const shownOptions = document.getElementsByClassName("shownPooya");
+		const hiddenOptions = document.getElementsByClassName("hiddenPooya");
+		for (i = 0; i < shownOptions.length; i++) {
+			shownOptions[i].style.display = "none";
+		}
+		
+		for (i = 0; i < hiddenOptions.length; i++) {
+			hiddenOptions[i].style.display = "block";
+		}
+		
+		let element = document.getElementById("timeStamps");
+		let times = JSON.parse(element.value);
+		let time = Date.now() - lastTime;
+		console.log("Setting Happiness time for the " + picId  + ": " + time)
+		times[picId] = {};
+		times[picId].valenceTime = time;
+		element.value = JSON.stringify(times);	
+		lastTime = Date.now();
+	}
+	function getArousalTime(picId){
+		let element = document.getElementById("timeStamps");
+		let times = JSON.parse(element.value);
+		let time = Date.now() - lastTime;
+		console.log("Setting Arousal time for the " + picId  + ": " + time)
+		times[picId].arousalTime = time;
+		element.value = JSON.stringify(times);	
+		lastTime = Date.now();
+	}
+
+</script>
+</body>
+</html>
