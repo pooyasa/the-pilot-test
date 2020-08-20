@@ -36,7 +36,7 @@ app.get("/" , async (req , res) => {
 });
 
 app.post("/" , (req , res) => {
-    /*
+    
     if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
     {
         return res.render("error" , {title : "خطای نامشخص"})
@@ -48,7 +48,7 @@ app.post("/" , (req , res) => {
         if(body.success !== undefined && !body.success) {
             return res.render("error" , {title : "خطای نامشخص"})
         }
-        */
+        
         try {
             if (!validatePost(req.body))
             return res.render("error" , {title : "خطای نامشخص"})
@@ -99,13 +99,13 @@ app.post("/" , (req , res) => {
         } catch (err) {
             console.error(err.message)
             return res.render("error" , {title : "خطای نامشخص"})
-        }/*
+        }
     })
     .catch(err => {
         console.log(err.message)
         return res.render("error" , {title : "خطای نامشخص"})
     })
-    */
+    
 });
 
 app.get("/getResults" , async  (req , res) => {
