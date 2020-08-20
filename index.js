@@ -115,8 +115,9 @@ app.get("/getResults" , async  (req , res) => {
 app.get("/getPictures" , async  (req , res) => {
     res.json( await mongooseLink.getPictures())
 });
+const port = process.env.PORT || 3000;
 
-app.listen(3000 , () => {
+app.listen(port , () => {
     debug("Started!")
 });
 
