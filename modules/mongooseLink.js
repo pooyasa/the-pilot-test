@@ -34,8 +34,7 @@ module.exports = {
                 return err;
             };
           } catch (err) {
-            dbDebugger(clc.red.bold("Add report Error"))
-            dbDebugger(err);
+            dbDebugger(clc.red.bold("Add report Error"), err)
             return (err._message);
           }
     },

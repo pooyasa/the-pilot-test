@@ -93,7 +93,7 @@ app.post("/" , (req , res) => {
                 model.result[i].arousal = provoked[i];
             }
             delete model.result[timeStamps.testRound];
-            debug(model)
+            
             mongooseLink.addReport(model)
             res.render("end" , {title : "ارزیابی تصاویر"})
         } catch (err) {
@@ -118,7 +118,7 @@ app.get("/getPictures" , async  (req , res) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port , () => {
-    debug("Started!")
+    console.log("Started!")
 });
 
 function validatePost(req) {
