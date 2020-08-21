@@ -420,6 +420,7 @@
 </div>
 </div>
 
+<script src="https://www.google.com/recaptcha/api.js?render=<%= capId %>"></script>
 <script>
 	var slideIndex = 1;
 	showSlides(slideIndex);
@@ -458,7 +459,7 @@
 					hiddenOptions[i].style.display = "none";
 				}
 				if (currentPicture == 0){
-					console.log("Test Round: ID = " + currentPictureId)
+					//console.log("Test Round: ID = " + currentPictureId)
 					let element = document.getElementById("timeStamps");
 					let times = JSON.parse(element.value);
 					times.testRound = currentPictureId;
@@ -476,6 +477,19 @@
 	}
 
 	function showSlides(n) {
+		if (n === <%= pictures.length %> + 2){
+			console.log("Executing Captcha")
+			grecaptcha.ready(function() {
+				grecaptcha.execute('6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-', {action:'validate_captcha'})
+					.then(function(token) {
+						document.getElementById('g-recaptcha-response').value = token;
+						document.getElementById("sub").disabled = false;
+					})
+					.catch(err => {
+						console.log(err)
+					});
+				});
+		}
 		var i;
 		var slides = document.getElementsByClassName("mySlides");
 		var dots = document.getElementsByClassName("dot");
@@ -522,13 +536,13 @@
 				let element = document.getElementById("timeStamps");
 				let times = JSON.parse(element.value);
 				let time = Date.now() - lastTime;
-				console.log("Setting Happiness time for the " + picId  + ": " + time)
+				//console.log("Setting Happiness time for the " + picId  + ": " + time)
 				times[picId] = {};
 				times[picId].valenceTime = time;
 				element.value = JSON.stringify(times);	
 				lastTime = Date.now();
 			} else {
-				console.log("IS NOT CHECKED")
+				//console.log("IS NOT CHECKED")
 			}
 
 		}
@@ -538,7 +552,7 @@
 		let element = document.getElementById("timeStamps");
 		let times = JSON.parse(element.value);
 		let time = Date.now() - lastTime;
-		console.log("Setting Arousal time for the " + picId  + ": " + time)
+		//console.log("Setting Arousal time for the " + picId  + ": " + time)
 		times[picId].arousalTime = time;
 		element.value = JSON.stringify(times);	
 		lastTime = Date.now();
@@ -546,21 +560,7 @@
 
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js?render=<%= capId %>"></script>
 
-<script>
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-', {action:'validate_captcha'})
-			.then(function(token) {
-				document.getElementById('g-recaptcha-response').value = token;
-				console.log("GOT it")
-				document.getElementById("sub").disabled = false;
-			})
-			.catch(err => {
-				console.log(err)
-			});
-    });
-</script>
 
 </body>
 </html>
