@@ -176,9 +176,9 @@
   </style>
 </head>
 <body > 
- 
+	
 <div class="container mt-4 p-4">
-  <h2 dir="rtl" align="right">آزمون ارزیابی تصاویر</h2>
+  <h2 dir="rtl" align="right" class="mb-4">آزمون ارزیابی تصاویر</h2>
   <div class="slideshow-container">
       <div class="mySlides fade1" >
 			<p dir="rtl" align="right">با درود، به این آزمون خوش آمدید، لطفا در فاصله‌ی شصت سانتی متری صفحه نمایشگر بنشینید و در صورت امکان منبع نور مستقیمی از بالای سر شما روشن نباشد.</p>
@@ -197,7 +197,7 @@
 		<input type="hidden" name="action" value="validate_captcha">	
 		<% for (var i = 0; i < pictures.length; i ++) { %>
             <div class="mySlides fade1" >
-				<div class="card  <% if (i == 0) { %> bg-info <% }else {%> bg-dark <% } %> img my-4 py-3 myCard text-white" >
+				<div class="card  <% if (i == 0) { %> bg-secondary <% }else {%> bg-dark <% } %> img my-4 py-3 myCard text-white" >
 				<% if (i == 0) { %> <h4> دور تست</h4> <% }%>
 				<img class="card-img-top" src="/PicStim<%= pictures[i] %>.jpg" alt="Card image" >
                 <div class="card-body text-center">
