@@ -22,9 +22,11 @@
 			<p dir="rtl" align="right">با درود، به این آزمون خوش آمدید، لطفا در فاصله‌ی شصت سانتی متری صفحه نمایشگر بنشینید و در صورت امکان منبع نور مستقیمی از بالای سر شما روشن نباشد.</p>
 			<p dir="rtl" align="right">هدف از این آزمون بررسی چگونگی پاسخ‌دهی افراد به صحنه‌های دیداری مختلف می‌باشد.</p>
 			<p dir="rtl" align="right">در این آزمون پنجاه تصویر مختلف ارائه می‌شود. <strong> فقط </strong>با توجه به واکنش و احساس درونی خود، مشخص کنید هر تصویر تا چه میزان برای شما احساس خوشایند یا ناخوشایند و تا چه میزان در شما احساس برانگیختگی ایجاد می‌کند.</p>
+			<p dir="rtl" align="right"> احساس انگیختگی شامل هرگونه هیجان بالا می‌باشد که می‌تواند خوشایند یا ناخوشایند باشد. اعداد روی پیوستار دوم تنها میزان انگیختگی شما را نشان می‌دهد.
+				نمونه‌هایی از انگیختگی بالا: احساس عصبانیت، ناراحتی، تشویش، اضطراب، سرخوشی، خوشحالی و...</p>
+			<p dir="rtl" align="right">ناخوشایند ترین: 1 و خوشایند ترین: 9</p>
+			<p dir="rtl" align="right">کمترین انگیختگی: 1 و بیشترین انگیختگی: 9</p>
 			<p dir="rtl" align="right"> تصویر اول برای نمونه و یادگیری شما می‌باشد؛ لطفا به نحوه‌ی پاسخ‌دهی به این نمونه‌ دقت کنید.</p>
-			<p dir="rtl" align="right">ناخوشایند ترین: -4 و خوشایند ترین +4</p>
-			<p dir="rtl" align="right">کمترین انگیختگی: -4 و بیشترین انگیختگی +4</p>
 	  		<p dir="rtl" align="right">بعضی از تصاویر ممکن است برای شما ناراحت کننده باشد، با زدن گزینه تایید، آگاهی خود را از این موضوع اعلام کنید.</p>
       <div class="text-center">
         <button onclick="plusSlides(1)" class="btn btn-success btn-block my-4"> تایید و شروع آزمون </button>
@@ -44,47 +46,47 @@
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice1"
 							name="h<%= pictures[i] %>" value="-4" >
-							<label for="1-<%= pictures[i] %>contactChoice1">-4</label>
+							<label for="1-<%= pictures[i] %>contactChoice1">1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice2"
 							name="h<%= pictures[i] %>" value="-3" >
-							<label for="1-<%= pictures[i] %>contactChoice2">-3</label>
+							<label for="1-<%= pictures[i] %>contactChoice2">2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">					
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice3"
 							name="h<%= pictures[i] %>" value="-2" >
-							<label for="1-<%= pictures[i] %>contactChoice3">-2</label>
+							<label for="1-<%= pictures[i] %>contactChoice3">3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">				
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice4"
 							name="h<%= pictures[i] %>" value="-1" >
-							<label for="1-<%= pictures[i] %>contactChoice4">-1</label>
+							<label for="1-<%= pictures[i] %>contactChoice4">4</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">				
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice5"
 							name="h<%= pictures[i] %>" value="0" >
-							<label for="1-<%= pictures[i] %>contactChoice5">0</label>
+							<label for="1-<%= pictures[i] %>contactChoice5">5</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice6"
 							name="h<%= pictures[i] %>" value="1"  > 
-							<label for="1-<%= pictures[i] %>contactChoice6">1</label>
+							<label for="1-<%= pictures[i] %>contactChoice6">6</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice7"
 							name="h<%= pictures[i] %>" value="2"  >
-							<label for="1-<%= pictures[i] %>contactChoice7">2</label>
+							<label for="1-<%= pictures[i] %>contactChoice7">7</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio" id="1-<%= pictures[i] %>contactChoice8"
 							name="h<%= pictures[i] %>" value="3"  > 
-							<label for="1-<%= pictures[i] %>contactChoice8">3</label>
+							<label for="1-<%= pictures[i] %>contactChoice8">8</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="1-<%= pictures[i] %>contactChoice9"
 							name="h<%= pictures[i] %>" value="4"  >
-							<label for="1-<%= pictures[i] %>contactChoice9">4</label>
+							<label for="1-<%= pictures[i] %>contactChoice9">9</label>
 						</div>
 						<br>
 						<br>
@@ -95,47 +97,47 @@
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice1"
 							name="p<%= pictures[i] %>" value="-4" >
-							<label for="2-<%= pictures[i] %>contactChoice1">-4</label>
+							<label for="2-<%= pictures[i] %>contactChoice1">1</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice2"
 							name="p<%= pictures[i] %>" value="-3" >
-							<label for="2-<%= pictures[i] %>contactChoice2">-3</label>
+							<label for="2-<%= pictures[i] %>contactChoice2">2</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">					
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice3"
 							name="p<%= pictures[i] %>" value="-2" >
-							<label for="2-<%= pictures[i] %>contactChoice3">-2</label>
+							<label for="2-<%= pictures[i] %>contactChoice3">3</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">				
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice4"
 							name="p<%= pictures[i] %>" value="-1" >
-							<label for="2-<%= pictures[i] %>contactChoice4">-1</label>
+							<label for="2-<%= pictures[i] %>contactChoice4">4</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">				
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice5"
 							name="p<%= pictures[i] %>" value="0" >
-							<label for="2-<%= pictures[i] %>contactChoice5">0</label>
+							<label for="2-<%= pictures[i] %>contactChoice5">5</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice6"
 							name="p<%= pictures[i] %>" value="1" > 
-							<label for="2-<%= pictures[i] %>contactChoice6">1</label>
+							<label for="2-<%= pictures[i] %>contactChoice6">6</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice7"
 							name="p<%= pictures[i] %>" value="2" >
-							<label for="2-<%= pictures[i] %>contactChoice7">2</label>
+							<label for="2-<%= pictures[i] %>contactChoice7">7</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio" id="2-<%= pictures[i] %>contactChoice8"
 							name="p<%= pictures[i] %>" value="3" > 
-							<label for="2-<%= pictures[i] %>contactChoice8">3</label>
+							<label for="2-<%= pictures[i] %>contactChoice8">8</label>
 						</div>
 						<div class="checkboxgroup ml-md-4 ml-sm-3 ml-2">
 							<input type="radio"  id="2-<%= pictures[i] %>contactChoice9"
 							name="p<%= pictures[i] %>" value="4" >
-							<label for="2-<%= pictures[i] %>contactChoice9">4</label>
+							<label for="2-<%= pictures[i] %>contactChoice9">9</label>
 						</div>		
 						<br>
 						<br>
