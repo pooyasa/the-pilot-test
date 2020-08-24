@@ -52,6 +52,7 @@ module.exports = {
         try{
             dbDebugger(clc.yellow.bold("getPictures"))
             let get = await pictures.find();
+            get = get.map(pic => ({id: pic.id, number: pic.number}))
             return get
         } catch (err) {
             dbDebugger(clc.red.bold("getCustomer"))
