@@ -41,6 +41,8 @@ function plusSlides(n, picId) {
                 times.testRound = currentPictureId;
                 element.value = JSON.stringify(times)
             }
+            if (document.getElementById(`counterHead-${slideIndex-1}`))
+                document.getElementById(`counterHead-${slideIndex-1}`).innerHTML = `${slideIndex - 1}/50`
             setTimeout(() => showSlides(slideIndex += n) , 0);
             lastTime = Date.now();
         } else  {

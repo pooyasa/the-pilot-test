@@ -37,76 +37,38 @@ app.get("/" , async (req , res) => {
 });
 
 app.post("/" , (req , res) => {
-    
-    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
-    {
-        return res.render("error" , {title : "خطای نامشخص"})
-    }
-    const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + config.captcha.secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
-    axios.create().get(verificationURL)
-    .then(response => {
-        body = response.data;
-        if(body.success !== undefined && !body.success) {
-            return res.render("error" , {title : "خطای نامشخص"})
+    try{
+        if (!validatePost(req.body)) return res.render("error" , {title : "خطای نامشخص"})
+        if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+        {
+            addtoDabatase(req, true);
+            return res.render("end" , {title : "ارزیابی تصاویر"})
         }
-        
-        try {
-            if (!validatePost(req.body))
-            return res.render("error" , {title : "خطای نامشخص"})
-            let timeStamps = JSON.parse(req.body.timeStamps);
-            let model = {}
-            model.gender = req.body.gender;
-            model.age = req.body.age;
-            
-            model.education = req.body.education;
-            model.disorder = req.body.disorder;
-            model.medCond = req.body.medCond;
-            
-            delete req.body.gender;
-            delete req.body.age;
-            delete req.body.timeStamps;
-            
-            delete req.body.education;
-            delete req.body.disorder;
-            delete req.body.medCond;
-            
-            delete req.body['g-recaptcha-response']
-            delete req.body.action
-            
-            let happiness = {};
-            let provoked = {};
-            for(i in req.body){
-                let modH = i.replace('h' , '');
-                let modP = i.replace('p' , '');
-                if (i != modH){
-                    happiness[modH] = req.body[i]
-                } else if (i != modP){
-                    provoked[modP] = req.body[i]
-                }
+        const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + config.captcha.secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+        axios.create().get(verificationURL)
+        .then(response => {
+            body = response.data;
+            if(body.success !== undefined && !body.success) {
+                addtoDabatase(req, true);
+                return res.render("end" , {title : "ارزیابی تصاویر"})
             }
-            model.result = {} ;
             
-            for (i in happiness)
-            {
-                model.result[i] = {};
-                model.result[i].time = timeStamps[i];
-                model.result[i].valence = happiness[i];
-                model.result[i].arousal = provoked[i];
+            try {
+                addtoDabatase(req, false);
+                return res.render("end" , {title : "ارزیابی تصاویر"})
+            } catch (err) {
+                console.error(err.message)
+                return res.render("error" , {title : "خطای نامشخص"})
             }
-            delete model.result[timeStamps.testRound];
-            
-            mongooseLink.addReport(model)
-            res.render("end" , {title : "ارزیابی تصاویر"})
-        } catch (err) {
-            console.error(err.message)
+        })
+        .catch(err => {
+            console.log(err.message)
             return res.render("error" , {title : "خطای نامشخص"})
-        }
-    })
-    .catch(err => {
+        })
+    } catch (err) {
         console.log(err.message)
         return res.render("error" , {title : "خطای نامشخص"})
-    })
-    
+    }
 });
 
 app.get("/getResults" , async  (req , res) => {
@@ -121,6 +83,53 @@ const port = process.env.PORT || 3000;
 app.listen(port , () => {
     console.log("Started!")
 });
+
+
+async function addtoDabatase(req, isValid){
+    let timeStamps = JSON.parse(req.body.timeStamps);
+    let model = {}
+    model.gender = req.body.gender;
+    model.age = req.body.age;
+    
+    model.education = req.body.education;
+    model.disorder = req.body.disorder;
+    model.medCond = req.body.medCond;
+    
+    delete req.body.gender;
+    delete req.body.age;
+    delete req.body.timeStamps;
+    
+    delete req.body.education;
+    delete req.body.disorder;
+    delete req.body.medCond;
+    
+    delete req.body['g-recaptcha-response']
+    delete req.body.action
+    
+    let happiness = {};
+    let provoked = {};
+    for(i in req.body){
+        let modH = i.replace('h' , '');
+        let modP = i.replace('p' , '');
+        if (i != modH){
+            happiness[modH] = req.body[i]
+        } else if (i != modP){
+            provoked[modP] = req.body[i]
+        }
+    }
+    model.result = {} ;
+    
+    for (i in happiness)
+    {
+        model.result[i] = {};
+        model.result[i].time = timeStamps[i];
+        model.result[i].valence = happiness[i];
+        model.result[i].arousal = provoked[i];
+    }
+    delete model.result[timeStamps.testRound];
+    if (isValid) model.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    mongooseLink.addReport(model)
+}
 
 function validatePost(req) {
     if (!req.gender) return false;

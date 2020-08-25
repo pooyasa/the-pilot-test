@@ -27,7 +27,7 @@
 			<p dir="rtl" align="right">ناخوشایند ترین: 1 و خوشایند ترین: 9</p>
 			<p dir="rtl" align="right">کمترین انگیختگی: 1 و بیشترین انگیختگی: 9</p>
 			<p dir="rtl" align="right"> تصویر اول برای نمونه و یادگیری شما می‌باشد؛ لطفا به نحوه‌ی پاسخ‌دهی به این نمونه‌ دقت کنید.</p>
-			<p dir="rtl" align="right">به علت استفاده از سرویس Google Recaptcha، لطفا فیلتر شکن خود را خاموش کنید.</p>
+			<p dir="rtl" align="right">به علت استفاده از سرویس Google reCaptcha، ترجیحاً فیلتر شکن خود را خاموش کنید.</p>
 	  		<p dir="rtl" align="right">بعضی از تصاویر ممکن است برای شما ناراحت کننده باشد، با زدن گزینه تایید، آگاهی خود را از این موضوع اعلام کنید.</p>
       <div class="text-center">
         <button onclick="plusSlides(1)" class="btn btn-success btn-block my-4"> تایید و شروع آزمون </button>
@@ -38,8 +38,8 @@
 		<input type="hidden" name="action" value="validate_captcha">	
 		<% for (var i = 0; i < pictures.length; i ++) { %>
             <div class="mySlides fade1" >
-				<div class="card  <% if (i == 0) { %> bg-secondary <% }else {%> bg-dark <% } %> img my-4 py-3 myCard text-white" >
-				<% if (i == 0) { %> <h4> دور تست</h4> <% }%>
+				<div class="card  <% if (i == 0) { %> bg-secondary <% }else {%> bg-dark <% } %> img my-4 myCard text-white" >
+				<div class="card-header bg-dark mb-3"><% if (i == 0) { %> <h4> دور تست</h4> <% } else { %> <h2 id = "counterHead-<%=i%>"></h2> <% }  %> </div>
 				<img class="card-img-top" src="/PicStim<%= pictures[i] %>.jpg" alt="Card image" >
                 <div class="card-body text-center">
 					<div style="position : absolute ; bottom : 0px; margin-left: auto;margin-right: auto;left: 0;right: 0;text-align: center; line-height:1rem;">
@@ -264,7 +264,10 @@
 <script>
 	function showSlides(n) {
     if (n === <%= pictures.length %> + 2){
-        console.log("Executing Captcha")
+		console.log("Executing Captcha")
+		setTimeout(() => {
+            document.getElementById("sub").disabled = false;
+		}, 4000)
         grecaptcha.ready(function() {
             grecaptcha.execute('6Lcr7sAZAAAAAF2b6fqmE4Hya72P_XYFl1Hyyow-', {action:'validate_captcha'})
                 .then(function(token) {

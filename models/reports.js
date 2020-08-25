@@ -29,6 +29,9 @@ const reportsSchema =  mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    ip: {
+        type: String
+    }
 } , { collection: 'reports' });
 
 module.exports = mongoose.model('reports' , reportsSchema);

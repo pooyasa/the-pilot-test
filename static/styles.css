@@ -123,14 +123,14 @@ body {
     font-family: Yekan, cursive;
     font-size: 17px;
   }
-  p{
+
+p {
     font-family: Yekan, cursive;
     font-size: 18px;
 }
 h2{
-    font-family: 'Yekan', cursive;
-    font-weight: bold;
-    font-size: 22px;
+    font-family: Yekan, cursive;
+    font-size: 20px;
 }
 .myCard {
         width : 90vw !important;
