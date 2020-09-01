@@ -12,7 +12,7 @@ module.exports = {
     begin : function (){
         mongoose.connect(url , { useNewUrlParser: true , useUnifiedTopology: true , useFindAndModify: false}, () => {
             dbDebugger(clc.green("Connected to the database!"))
-        });        
+        });
     },
     addReport : async function(req) {
         try { // Checks if model is folan
@@ -75,7 +75,7 @@ module.exports = {
             const picture = await pictures
             .find()
             .sort({number: 1})
-            .limit((number * 3));
+            .limit((number * 2));
             return picture
         } catch (err) {
             dbDebugger(clc.red.bold("getLeastShowedPictures"))
