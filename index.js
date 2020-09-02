@@ -25,9 +25,9 @@ app.get("/" , async (req , res) => {
     let pictureNumbers = []
     let randomVar;
     for (let i = 0 ; i < config.numberOfPicturesToBeShown ; i++){
-        randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown * 3)
+        randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown * 2)
         while (!(randomArray.find(element => element == randomVar) == undefined)){
-            randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown )
+            randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown * 2)
         }
         randomArray.push(randomVar)
         pictureNumbers.push(leastShowedPictures[randomArray[i]].id)
