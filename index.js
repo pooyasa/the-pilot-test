@@ -36,6 +36,61 @@ app.get("/" , async (req , res) => {
     res.render("home" , {title : "ارزیابی تصاویر" , pictures : pictureNumbers, capId: config.captcha.siteKey})
 });
 
+app.get("/en" , async (req , res) => {
+    let leastShowedPictures = await mongooseLink.getLeastShowedPictures(config.numberOfPicturesToBeShown);
+    let randomArray = [];
+    let pictureNumbers = []
+    let randomVar;
+    for (let i = 0 ; i < config.numberOfPicturesToBeShown ; i++){
+        randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown * 2)
+        while (!(randomArray.find(element => element == randomVar) == undefined)){
+            randomVar = Math.floor(Math.random() * config.numberOfPicturesToBeShown * 2)
+        }
+        randomArray.push(randomVar)
+        pictureNumbers.push(leastShowedPictures[randomArray[i]].id)
+        mongooseLink.incPictures(pictureNumbers[i])
+    }
+    res.render("homeEn" , {title : "The Pilot Test" , pictures : pictureNumbers, capId: config.captcha.siteKey})
+});
+
+
+
+app.post("/en" , (req , res) => {
+    try{
+        if (!validatePost(req.body)) return res.render("error" , {title : "Unknown Error"})
+        if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+        {
+            addtoDabatase(req, true);
+            return res.render("endEn" , {title : "The Pilot Test"})
+        }
+        const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + config.captcha.secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+        axios.create().get(verificationURL)
+        .then(response => {
+            body = response.data;
+            if(body.success !== undefined && !body.success) {
+                addtoDabatase(req, true);
+                return res.render("endEn" , {title : "The Pilot Test"})
+            }
+            
+            try {
+                addtoDabatase(req, false);
+                return res.render("endEn" , {title : "The Pilot Test"})
+            } catch (err) {
+                console.error(err.message)
+                return res.render("error" , {title : "Unknown Error"})
+            }
+        })
+        .catch(err => {
+            console.log(err.message)
+            return res.render("error" , {title : "Unknown Error"})
+        })
+    } catch (err) {
+        console.log(err.message)
+        return res.render("error" , {title : "Unknown Error"})
+    }
+});
+
+
 app.post("/" , (req , res) => {
     try{
         if (!validatePost(req.body)) return res.render("error" , {title : "خطای نامشخص"})
@@ -145,4 +200,4 @@ function validatePost(req) {
     return true;
 }
 
-//mongooseLink.restartDatabase();
+// mongooseLink.restartDatabase();
