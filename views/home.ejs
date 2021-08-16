@@ -23,8 +23,8 @@
 				<span class="flag-icon flag-icon-ir">
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			  <a class="dropdown-item" href="/"><span class="flag-icon flag-icon-ir"></a>
-			  <a class="dropdown-item" href="/en"><span class="flag-icon flag-icon-us"></a>
+			  <a class="dropdown-item" href="/fa"><span class="flag-icon flag-icon-ir"></a>
+			  <a class="dropdown-item" href="/"><span class="flag-icon flag-icon-us"></a>
 			</div>
 		</div>
 	</nav>
@@ -51,7 +51,7 @@
         <button onclick="plusSlides(1)" class="btn btn-success btn-block my-4" disabled id="startButton"> تایید و شروع آزمون </button>
       </div>
       </div>
-		<form action="/" method="POST" id="theForm" class = "text-center">
+		<form action="/fa" method="POST" id="theForm" class = "text-center">
 		<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 		<input type="hidden" name="action" value="validate_captcha">	
 		<% for (var i = 0; i < pictures.length; i ++) { %>

@@ -19,7 +19,7 @@ app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')))
 app.use("/" , express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/" , async (req , res) => {
+app.get("/fa" , async (req , res) => {
     let leastShowedPictures = await mongooseLink.getLeastShowedPictures(config.numberOfPicturesToBeShown);
     let randomArray = [];
     let pictureNumbers = []
@@ -36,7 +36,7 @@ app.get("/" , async (req , res) => {
     res.render("home" , {title : "ارزیابی تصاویر" , pictures : pictureNumbers, capId: config.captcha.siteKey})
 });
 
-app.get("/en" , async (req , res) => {
+app.get("/" , async (req , res) => {
     let leastShowedPictures = await mongooseLink.getLeastShowedPictures(config.numberOfPicturesToBeShown);
     let randomArray = [];
     let pictureNumbers = []
@@ -55,7 +55,7 @@ app.get("/en" , async (req , res) => {
 
 
 
-app.post("/en" , (req , res) => {
+app.post("/" , (req , res) => {
     try{
         if (!validatePost(req.body)) return res.render("error" , {title : "Unknown Error"})
         if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
@@ -91,7 +91,7 @@ app.post("/en" , (req , res) => {
 });
 
 
-app.post("/" , (req , res) => {
+app.post("/fa" , (req , res) => {
     try{
         if (!validatePost(req.body)) return res.render("error" , {title : "خطای نامشخص"})
         if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
