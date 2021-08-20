@@ -1,4 +1,5 @@
 process.env.DEBUG = ["app:db" , "app:main"]
+require('dotenv').config()
 const express = require("express")
 const bodyParser = require("body-parser")
 const mongooseLink = require('./modules/mongooseLink');
