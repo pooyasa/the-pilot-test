@@ -3,7 +3,7 @@ const reports = require ("../models/reports.js");
 const pictures = require ("../models/pictures.js");
 const clc = require("cli-color")
 
-const url = "mongodb://ubgasaeyxfkdax8edwsa:B15AkMQ55BgHjNrb6Xe1@bzkphowgjeg42gj-mongodb.services.clever-cloud.com:27017/bzkphowgjeg42gj"
+const url = process.env.DB_URL;
 const dbDebugger = require("debug")("app:db");
 
 module.exports = {
